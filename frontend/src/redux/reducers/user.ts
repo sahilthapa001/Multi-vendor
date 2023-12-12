@@ -1,7 +1,17 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-	isAuthenticated: false,
-};
+const userSlice = createSlice({
+    name:"user",
+    initialState:{
+        isAuthenticated : false,
 
-export const userReducer = createReducer(initialState, (builder) => {});
+    },
+    reducers:{
+        loadUser: (state,action) => {
+            //
+        },
+    },
+})
+
+
+export default userSlice.reducer;
