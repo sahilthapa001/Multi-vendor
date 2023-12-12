@@ -7,11 +7,13 @@ appRouter.get("/", (req, res) => {
 });
 
 const userRouter = require("./user");
-const sellerRouter = require("./seller");
+const shopRouter = require("./shop");
+const productRouter = require("./product");
 const orderRouter = require("./order");
 
 appRouter.use("/user", userRouter);
-appRouter.use("/seller", sellerRouter);
-app.Router.use("/order", orderRouter);
+appRouter.use("/shop", shopRouter);
+appRouter.use("/product", productRouter);
+appRouter.use("/order", orderRouter);
 
 module.exports = appRouter;

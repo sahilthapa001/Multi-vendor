@@ -1,34 +1,89 @@
 const express = require("express");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const LWPError = require("../utils/error");
+const Order = require("../model/Order");
 
 const orderRouter = express.Router();
 
-orderRouter.get("/", (req, res) => {
-	res.send("ordeRouter");
-});
-
 orderRouter.post(
-	"/create",
+	"/",
 	catchAsyncErrors(async (req, res, next) => {
-		const { cart, shippingAddress, userId } = req.body;
+		try {
+			const { cart, shippingAddress, userId, totalPrice, paymentInfo } =
+				req.body;
+
+			//   group cart items by shopId
+			const shopItemsMap = new Map();
+
+			for (const item of cart) {
+				const shopId = item.shopId;
+				if (!shopItemsMap.has(shopId)) {
+					shopItemsMap.set(shopId, []);
+				}
+				shopItemsMap.get(shopId).push(item);
+			}
+
+			// create an order for each shop
+			const orders = [];
+
+			for (const [shopId, items] of shopItemsMap) {
+				const order = await Order.create({
+					cart: items,
+					shippingAddress,
+					userId,
+					totalPrice,
+					paymentInfo,
+				});
+				orders.push(order);
+			}
+
+			res.status(201).json({
+				success: true,
+				orders,
+			});
+		} catch (error) {
+			return next(new LWPError(error.message, 500));
+		}
 	})
 );
 
 orderRouter.get(
-	"/find/:id", // Define the parameter in the route path
+	"/user/:userId",
 	catchAsyncErrors(async (req, res, next) => {
 		try {
-			const orderId = req.params.id; // Access the `id` parameter from the request
-			const foundOrder = await Order.findById(orderId);
+			const orders = await Order.find({ userId: req.params.userId }).sort({
+				createdAt: -1,
+			});
 
-			if (foundOrder) {
-				res.status(200).json(foundOrder);
-			} else {
-				res.status(404).json({ message: "Order not found" });
-			}
+			res.status(200).json({
+				success: true,
+				orders,
+			});
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			return next(new LWPError(error.message, 500));
 		}
 	})
 );
+
+// get all orders of seller
+orderRouter.get(
+	"/shop/:shopId",
+	catchAsyncErrors(async (req, res, next) => {
+		try {
+			const orders = await Order.find({
+				"cart.shopId": req.params.shopId,
+			}).sort({
+				createdAt: -1,
+			});
+
+			res.status(200).json({
+				success: true,
+				orders,
+			});
+		} catch (error) {
+			return next(new LWPError(error.message, 500));
+		}
+	})
+);
+
 module.exports = orderRouter;

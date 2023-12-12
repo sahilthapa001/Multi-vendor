@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "9f2ca8b2-e0d5-40ba-964f-0e4018eab8d2",
+		"name": "Multi Vendor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5118181"
+	},
+	"item": [
+		{
+			"name": "User-Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sharma.pratap22@gmail.com\",\n    \"password\": \"asjkdsajdhjshd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/login",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "user", "login"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User-Activate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/activation/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUHJhdGFwIiwiZW1haWwiOiJzaGFybWEucHJhdGFwMjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJhc2prZHNhamRoanNoZCIsImlhdCI6MTcwMTA4ODYwNywiZXhwIjoxNzAxMTY3ODA3fQ.HmQHxjeMp92zkHuRAgpb9eJLJ0IpMAIuHxmFsNX915o",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "user", "activation", ""],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUHJhdGFwIiwiZW1haWwiOiJzaGFybWEucHJhdGFwMjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJhc2prZHNhamRoanNoZCIsImlhdCI6MTcwMTA4ODYwNywiZXhwIjoxNzAxMTY3ODA3fQ.HmQHxjeMp92zkHuRAgpb9eJLJ0IpMAIuHxmFsNX915o"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User-Create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pratap\",\n    \"email\": \"sharma.pratap22@gmail.com\",\n    \"password\": \"asjkdsajdhjshd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/create",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "user", "create"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shop-Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sharma.pratap22@gmail.com\",\n    \"password\": \"asjkdsajdhjshd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/shop/login",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "shop", "login"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seller-Activate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/seller/activation/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFza2lucyBSb2JiaW5zIiwiZW1haWwiOiJzaGFybWEucHJhdGFwMjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJhc2prZHNhamRoanNoZCIsImlhdCI6MTcwMTA4OTk1OCwiZXhwIjoxNzAxMTY5MTU4fQ.LRzFRwKAdmTVgO72PFc-nZKGArtkUXBVh9gbj48idYY",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "seller", "activation", ""],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFza2lucyBSb2JiaW5zIiwiZW1haWwiOiJzaGFybWEucHJhdGFwMjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJhc2prZHNhamRoanNoZCIsImlhdCI6MTcwMTA4OTk1OCwiZXhwIjoxNzAxMTY5MTU4fQ.LRzFRwKAdmTVgO72PFc-nZKGArtkUXBVh9gbj48idYY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seller-Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Baskins Robbins\",\n    \"email\": \"sharma.pratap22@gmail.com\",\n    \"password\": \"asjkdsajdhjshd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/seller/create",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "seller", "create"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nokie C1\",\n    \"description\": \"This phone comes with bluetooth\",\n    \"category\": \"Mobile\",\n    \"tags\": \"mobile,handset,bluetooth\",\n    \"originalPrice\": 2000,\n    \"discountPrice\": 1900,\n    \"stock\": 10,\n    \"shopId\": \"656492c114f9d8e15b3ca6c3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "product"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "product"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products by ShopId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/shop/656492c114f9d8e15b3ca6c3",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "product", "shop", "656492c114f9d8e15b3ca6c3"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/6565e6008a064d4a77e16d33",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "product", "6565e6008a064d4a77e16d33"]
+				}
+			},
+			"response": []
+		}
+	]
+}
