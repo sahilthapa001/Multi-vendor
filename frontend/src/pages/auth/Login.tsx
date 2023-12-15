@@ -25,7 +25,7 @@ const Login = () => {
       const axiosError = error as AxiosError;
       toast.error(axiosError.message || "An error occurred");
       console.log("Catch", error);
-    }
+     }
   };
 
   return (
