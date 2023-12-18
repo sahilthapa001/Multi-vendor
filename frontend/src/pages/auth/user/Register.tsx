@@ -1,43 +1,64 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import lwpStyles from "../../styles";
-import { loginAsync } from "../../redux/actions/user";
-import { AppDispatch } from "../../redux/store";
+import lwpStyles from "../../../styles";
+import { AppDispatch } from "../../../redux/store";
+import { useDispatch } from "react-redux";
+import { createUserAsync } from "../../../redux/actions/user";
 import { AxiosError } from "axios";
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    try {
-      await dispatch(loginAsync({ email, password }));
-      toast.success("Login Success!");
-      navigate("/");
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      toast.error(axiosError.message || "An error occurred");
-      console.log("Catch", error);
-     }
-  };
+		e.preventDefault();
+		try {
+			await dispatch(createUserAsync({ name,email, password }));
+			toast.success("Login Success!");
+			navigate("/");
+		} catch (error) {
+			const axiosError = error as AxiosError;
+			toast.error(axiosError.message || "An error occurred");
+			console.log("Catch", error);
+		}
+	};
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Login to your account
+          Register as a new user
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Full Name
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="text"
+                  autoComplete="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
             <div>
               <label
                 htmlFor="email"
@@ -57,6 +78,7 @@ const Login = () => {
                 />
               </div>
             </div>
+
             <div>
               <label
                 htmlFor="password"
@@ -89,30 +111,6 @@ const Login = () => {
                 )}
               </div>
             </div>
-            <div className={`${lwpStyles.noramlFlex} justify-between`}>
-              <div className={`${lwpStyles.noramlFlex}`}>
-                <input
-                  type="checkbox"
-                  name="remember-me"
-                  id="remember-me"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-              <div className="text-sm">
-                <a
-                  href=".forgot-password"
-                  className="font-medium text-blue-600 hover:text-blue-500"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
             <div>
               <button
                 type="submit"
@@ -122,9 +120,9 @@ const Login = () => {
               </button>
             </div>
             <div className={`${lwpStyles.noramlFlex} w-full`}>
-              <h4>Not have any account?</h4>
-              <Link to="/register" className="text-blue-600 pl-2">
-                Register
+              <h4>Already have an account?</h4>
+              <Link to="/login" className="text-blue-600 pl-2">
+                Sign In
               </Link>
             </div>
           </form>
@@ -134,4 +132,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
