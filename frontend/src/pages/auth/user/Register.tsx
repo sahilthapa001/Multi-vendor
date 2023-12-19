@@ -1,33 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import lwpStyles from "../../../styles";
-import { AppDispatch } from "../../../redux/store";
-import { useDispatch } from "react-redux";
+import { AppDispatch, LWPState } from "../../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
 import { createUserAsync } from "../../../redux/actions/user";
 import { AxiosError } from "axios";
 
 const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { isAuthenticated, user } = useSelector(
+    (state: LWPState) => state.user
+  );
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    console.log("I am here");
+    if (isAuthenticated && user) {
+      console.log("I am here inside");
+      navigate("/");
+    }
+  }, [isAuthenticated, user, navigate]);
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
-		e.preventDefault();
-		try {
-			await dispatch(createUserAsync({ name,email, password }));
-			toast.success("Login Success!");
-			navigate("/");
-		} catch (error) {
-			const axiosError = error as AxiosError;
-			toast.error(axiosError.message || "An error occurred");
-			console.log("Catch", error);
-		}
-	};
+    e.preventDefault();
+    try {
+      await dispatch(createUserAsync({ name, email, password }));
+      toast.success("Create Success! Check your email");
+      navigate("/");
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      toast.error(axiosError.message || "An error occurred");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
