@@ -8,10 +8,26 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 const userRouter = express.Router();
 
-userRouter.get("/", (req, res) => {
-	res.send("userRouter");
-});
+userRouter.get(
+	"/",
+	isAuthenticated,
+	catchAsyncErrors(async (req, res, next) => {
+		try {
+			const user = await User.findById(req.user.id);
 
+			if (!user) {
+				return next(new ErrorHandler("User doesn't exists", 400));
+			}
+
+			res.status(200).json({
+				success: true,
+				user,
+			});
+		} catch (error) {
+			return next(new ErrorHandler(error.message, 500));
+		}
+	})
+);
 userRouter.post(
 	"/create",
 	catchAsyncErrors(async (req, res, next) => {
