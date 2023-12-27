@@ -1,83 +1,64 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import lwpAxios from "../../config/axiosConfig";
 import { AxiosError } from "axios";
+import { Product } from "../../type/product";
 
-interface ShopLoginData {
-	name?: string;
-	email: string;
-	password: string;
-	address?: string;
-	phoneNumber?: string;
-	zipCode?: string;
-	rememberMe?: boolean;
-}
-
-export const shopLoginAsync = createAsyncThunk(
-	"shop/login",
-	async (loginData: ShopLoginData) => {
-		try {
-			const response = await lwpAxios.post("/shop/login", loginData, {
-				withCredentials: true,
-			});
-			return response.data;
-		} catch (error: unknown) {
-			if (error instanceof AxiosError) {
-				throw new Error("Login failed: " + error.response?.data.message);
-			} else {
-				return Promise.reject();
-			}
-		}
-	}
+export const createProductAsync = createAsyncThunk(
+  "product/create",
+  async (product: Product) => {
+    try {
+      const response = await lwpAxios.post("/product/", product, {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        throw new Error(
+          "Create Product failed: " + error.response?.data.message
+        );
+      } else {
+        return Promise.reject();
+      }
+    }
+  }
 );
 
-export const createShopAsync = createAsyncThunk(
-	"shop/create",
-	async (loginData: ShopLoginData) => {
-		try {
-			const response = await lwpAxios.post("/shop/create", loginData, {
-				withCredentials: true,
-			});
-			return response.data;
-		} catch (error: unknown) {
-			if (error instanceof AxiosError) {
-				throw new Error("Create failed: " + error.response?.data.message);
-			} else {
-				return Promise.reject();
-			}
-		}
-	}
+export const getAllProductAsync = createAsyncThunk(
+  "product/getList",
+  async () => {
+    try {
+      const response = await lwpAxios.get("/product/", {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        throw new Error(
+          "Fetch All Product failed: " + error.response?.data.message
+        );
+      } else {
+        return Promise.reject();
+      }
+    }
+  }
 );
 
-export const activateShopAsync = createAsyncThunk(
-	"shop/active",
-	async (token: string) => {
-		try {
-			const response = await lwpAxios.get(`/shop/activation/${token}`);
-			return response.data;
-		} catch (error: unknown) {
-			if (error instanceof AxiosError) {
-				throw new Error("Login failed: " + error.response?.data.message);
-			} else {
-				return Promise.reject();
-			}
-		}
-	}
-);
-
-export const shopAutoLoginAsync = createAsyncThunk(
-	"shop/autoLogin",
-	async () => {
-		try {
-			const response = await lwpAxios.get("/shop", {
-				withCredentials: true,
-			});
-			return response.data;
-		} catch (error: unknown) {
-			if (error instanceof AxiosError) {
-				throw new Error("Login failed: " + error.response?.data.message);
-			} else {
-				return Promise.reject();
-			}
-		}
-	}
+export const deletelProductAsync = createAsyncThunk(
+  "product/delete",
+  async (id: string) => {
+    try {
+      await lwpAxios.delete(`/product/${id}`, {
+        withCredentials: true,
+      });
+      return id;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        throw new Error(
+          "Delete Product failed: " + error.response?.data.message
+        );
+      } else {
+        return Promise.reject();
+      }
+    }
+  }
 );

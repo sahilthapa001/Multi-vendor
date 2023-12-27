@@ -55,7 +55,7 @@ const Login = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email Address
+                Email address
               </label>
               <div className="mt-1">
                 <input
@@ -125,7 +125,7 @@ const Login = () => {
                   href=".forgot-password"
                   className="font-medium text-blue-600 hover:text-blue-500"
                 >
-                  Forgot your Password?
+                  Forgot your password?
                 </a>
               </div>
             </div>

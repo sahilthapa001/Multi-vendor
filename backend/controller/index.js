@@ -3,7 +3,7 @@ const express = require("express");
 const appRouter = express.Router();
 
 appRouter.get("/", (req, res) => {
-	res.send("appRouter");
+  res.send("appRouter");
 });
 
 const userRouter = require("./user");
