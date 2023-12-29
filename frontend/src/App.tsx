@@ -20,65 +20,65 @@ import BestSelling from "./pages/product/BestSelling";
 import TestSocket from "./pages/TestSocket";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/activation/:token" element={<ActivationPage />} />
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/activation/:token" element={<ActivationPage />} />
 
-        <Route path="/shop-login" element={<ShopLogin />} />
-        <Route path="/shop-register" element={<ShopRegister />} />
-        <Route path="/best-selling" element={<BestSelling />} />
-        <Route path="/test-socket" element={<TestSocket />} />
+				<Route path="/shop-login" element={<ShopLogin />} />
+				<Route path="/shop-register" element={<ShopRegister />} />
+				<Route path="/best-selling" element={<BestSelling />} />
+				<Route path="/test-socket" element={<TestSocket />} />
 
-        <Route
-          path="/shop-activation/:token"
-          element={<ShopActivationPage />}
-        />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route
-          path="/shop-dashboard"
-          element={
-            <ShopProtectedRoute>
-              <ShopDashboard />
-            </ShopProtectedRoute>
-          }
-        />
-        <Route
-          path="/dashboard-create-product"
-          element={
-            <ShopProtectedRoute>
-              <ShopCreateProduct />
-            </ShopProtectedRoute>
-          }
-        />
-        <Route
-          path="/shop-products"
-          element={
-            <ShopProtectedRoute>
-              <ShopAllProducts />
-            </ShopProtectedRoute>
-          }
-        />
-        <Route path="/" index element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-    </BrowserRouter>
-  );
+				<Route
+					path="/shop-activation/:token"
+					element={<ShopActivationPage />}
+				/>
+				<Route path="/products" element={<Products />} />
+				<Route path="/product/:id" element={<ProductDetails />} />
+				<Route
+					path="/shop-dashboard"
+					element={
+						<ShopProtectedRoute>
+							<ShopDashboard />
+						</ShopProtectedRoute>
+					}
+				/>
+				<Route
+					path="/dashboard-create-product"
+					element={
+						<ShopProtectedRoute>
+							<ShopCreateProduct />
+						</ShopProtectedRoute>
+					}
+				/>
+				<Route
+					path="/shop-products"
+					element={
+						<ShopProtectedRoute>
+							<ShopAllProducts />
+						</ShopProtectedRoute>
+					}
+				/>
+				<Route path="/" index element={<Home />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="dark"
+			/>
+		</BrowserRouter>
+	);
 }
 
 export default App;
