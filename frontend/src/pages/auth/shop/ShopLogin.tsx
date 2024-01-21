@@ -8,7 +8,7 @@ import { AppDispatch } from "../../../redux/store";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
-const ShopLogin = () => {
+const ShopLogin = () => { 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ const ShopLogin = () => {
       navigate("/shop-dashboard");
     } catch (error) {
       const axiosError = error as AxiosError;
-      toast.error(axiosError.message || "An error occurred");
+      toast.error(axiosError.message || "An error has occurred");
     }
   };
 
