@@ -20,11 +20,11 @@ const ShopLogin = () => {
     e.preventDefault();
     try {
       await dispatch(shopLoginAsync({ email, password, rememberMe }));
-      toast.success("Login Successfull!");
+      toast.success("Login Success!");
       navigate("/shop-dashboard");
     } catch (error) {
       const axiosError = error as AxiosError;
-      toast.error(axiosError.message || "An error has occurred");
+      toast.error(axiosError.message || "An error has occured, check it!");
     }
   };
 
